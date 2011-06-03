@@ -119,7 +119,7 @@ class Kohana_Deputy
 			$this->set_resources($this->_config['resources']);	
 		}
 	}
-	
+
 	/**
 	 * Set role
 	 * 

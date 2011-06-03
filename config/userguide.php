@@ -7,7 +7,7 @@ return array
 		(
 			'enabled'		=> TRUE,
 			'name'			=> 'Deputy',
-			'description'	=> 'Powerfully simple ACL.',
+			'description'	=> 'Powerful ACL designed with the minimalist in mind.',
 			'copyright'		=> '&copy; 2011 Micheal Morgan',
 		)
 	)

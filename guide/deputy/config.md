@@ -5,7 +5,7 @@ segmenting large applications into smaller more managable modules.
 
 ## Resources
 
-### In "config/acl.php"
+### In "config/deputy.php"
 
 	return array
 	(
@@ -23,16 +23,16 @@ Deputy purposely does not load the configuration by default. You should hook and
 configuration based on the requirements of your application. Below is an example of loading 
 the sample from above:
 
-	$acl = ACL::instance();
+	$deputy = Deputy::instance();
 	
-	$acl->set_resources(Kohana::config('acl.resources'));
+	$deputy->set_resources(Kohana::config('deputy.resources'));
 
 The above example will load all resources across all modules using Kohana's cascading file system 
 convention.
 
 ## Roles
 
-### In "config/acl.php"
+### In "config/deputy.php"
 
 	return array
 	(
@@ -47,7 +47,7 @@ convention.
 	
 ### Loading Config
 
-	$acl = ACL::instance();
+	$deputy = Deputy::instance();
 	
-	$acl->set_roles(Kohana::config('acl.roles'));
+	$deputy->set_roles(Kohana::config('deputy.roles'));
 

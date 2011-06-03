@@ -9,7 +9,7 @@ are conventions that make resources flexible and easy.
 
 ## Creating Resources
 
-ACL_Resource uses a unified construct with the following parameters:
+Deputy_Resource uses a unified construct with the following parameters:
 
 	$config = array
 	(
@@ -22,7 +22,7 @@ ACL_Resource uses a unified construct with the following parameters:
 The only required parameter is the URI. The title is derived from the last segment in the URI. 
 Visibility is by default TRUE. Override can be used to specify another URI for the resource.
 
-	$resource = ACL_Resource::factory(array('uri' => 'forum/thread'));
+	$resource = Deputy_Resource::factory(array('uri' => 'forum/thread'));
 	
 	// Outputs "Thread"
 	echo $resource->get_title();
@@ -39,13 +39,13 @@ Visibility is by default TRUE. Override can be used to specify another URI for t
 
 Children resources can be manually added to a parent.
 
-	$parent = ACL_Resource::factory(array('uri' => 'forum'));
+	$parent = Deputy_Resource::factory(array('uri' => 'forum'));
 	
-	$child = ACL_Resource::factory(array('uri' => 'forum/thread'));
+	$child = Deputy_Resource::factory(array('uri' => 'forum/thread'));
 	
-	$acl_resource->set('thread', $child);
+	$deputy_resource->set('thread', $child);
 
-Of course, using the ACL takes care of the creation of children automatically.
+Of course, using the Deputy takes care of the creation of children automatically.
 
 ### Getting
 
@@ -55,7 +55,7 @@ Retrieving children are easy. Simply "get" using the segment name:
 
 ### Traversing
 
-ACL_Resource extends ArrayIterator allowing for easy traversal of children. A resource can 
+Deputy_Resource extends ArrayIterator allowing for easy traversal of children. A resource can 
 essentially be used as an array.
 
 	// Outputs "Thread"
@@ -64,18 +64,18 @@ essentially be used as an array.
 		echo $child->get_title();
 	}
 
-## ACL Conventions
+## Deputy Conventions
 
 Deputy has flexible configuration for defining resources.
 
-	$acl = ACL::instance();
+	$deputy = Deputy::instance();
 	
-	$acl->set_resources(array
+	$deputy->set_resources(array
 	(
 		'forum',
 		'forum/thread' 			=> 'Threads',
 		'forum/thread/add'		=> array('title' => 'Add Thread', 'visible' => TRUE),
 		'forum/thread/edit'		=> FALSE,
 		'forum/thread/delete'	=> TRUE,
-		'forum/post'			=> ACL_Resource::factory(array('uri' => 'forum/post'))
+		'forum/post'			=> Deputy_Resource::factory(array('uri' => 'forum/post'))
 	));
