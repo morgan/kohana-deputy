@@ -4,11 +4,34 @@
  *
  * @package		Deputy
  * @category	Tests
- * @author		Micheal Morgan <micheal.morgan@standvertical.com>
- * @copyright	(c) 2007-2011 Stand Vertical Inc
+ * @author		Micheal Morgan <micheal@morgan.ly>
+ * @copyright	(c) 2011 Micheal Morgan
+ * @license		MIT
  */
 class Kohana_Deputy_Role_Test extends Unittest_TestCase
 {	
+	/**
+	 * Tests permissions
+	 * 
+	 * @covers			Deputy_Role::factory
+	 * @covers			Deputy_Role::allow_many
+	 * @covers			Deputy_Role::get_allow
+	 * @covers			Deputy_Role::_get
+	 * @covers			Deputy_Role::_set
+	 * @dataProvider	provider_allow
+	 */
+	public function test_allow($set, $expected)
+	{
+		// Create role
+		$acl_role = Deputy_Role::factory();
+		
+		// Set permissions
+		$acl_role->allow_many($set);
+	
+		// Check permission
+		$this->assertEquals($expected, $acl_role->get_allow());		
+	}	
+	
 	/**
 	 * Data provider for role resources
 	 *
@@ -46,27 +69,5 @@ class Kohana_Deputy_Role_Test extends Unittest_TestCase
 				)
 			),
 		);
-	}
-	
-	/**
-	 * Tests permissions
-	 * 
-	 * @covers			Deputy_Role::factory
-	 * @covers			Deputy_Role::allow_many
-	 * @covers			Deputy_Role::get_allow
-	 * @covers			Deputy_Role::_get
-	 * @covers			Deputy_Role::_set
-	 * @dataProvider	provider_allow
-	 */
-	public function test_allow($set, $expected)
-	{
-		$acl_role = Deputy_Role::factory();
-		$acl_role->allow_many($set);
-	
-		$this->assertEquals
-		(
-			$expected,
-			$acl_role->get_allow()
-		);		
 	}
 }

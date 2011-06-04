@@ -123,13 +123,24 @@ class Kohana_Deputy
 	/**
 	 * Set role
 	 * 
+	 * If Deputy_Role passed, it always sets 
+	 * 
 	 * @access	public
 	 * @param	string
 	 * @return	$this
 	 */
 	public function set_role($name, $role)
 	{
-		$acl_role = ($role instanceof Deputy_Role) ? $role : Deputy_Role::factory();
+		if (isset($this->_roles[$name]) && is_array($role))
+		{
+			$acl_role = $this->_roles[$name];
+		}
+		else
+		{
+			$acl_role = ($role instanceof Deputy_Role) ? $role : Deputy_Role::factory();
+			
+			$this->_roles[$name] = $acl_role;
+		}
 		
 		if (is_array($role))
 		{
@@ -149,11 +160,9 @@ class Kohana_Deputy
 			$acl_role->deny_many($deny);
 		}
 		
-		$this->_roles[$name] = $acl_role;
-		
 		return $this;
 	}
-	
+
 	/**
 	 * Get role
 	 * 
