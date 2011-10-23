@@ -2,6 +2,7 @@
 /**
  * Tests Deputy Resource
  *
+ * @group		deputy
  * @package		Deputy
  * @category	Tests
  * @author		Micheal Morgan <micheal@morgan.ly>

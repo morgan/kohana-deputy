@@ -100,7 +100,7 @@ class Kohana_Deputy
 		$this->_resources = new Deputy_Resource;
 
 		// Handle configuration
-		$this->_config = Kohana::config('deputy')->as_array() + $config;
+		$this->_config = Arr::merge(Kohana::$config->load('deputy')->as_array(), $config);
 		
 		// Setup Deputy
 		$this->_setup();
