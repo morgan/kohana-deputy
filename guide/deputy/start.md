@@ -52,15 +52,15 @@ within the applications bootstrap. Below demonstrates two ways to set roles.
 	$deputy = Deputy::instance();
 
 	// Example setting multiple roles
-	$roles = arr::extract(Kohana::config('deputy.roles'), array('user', 'editor'));
+	$roles = arr::extract(Kohana::$config->load('deputy.roles'), array('user', 'editor'));
 	$deputy->set_roles($roles);
 	
 	// Example setting individual roles
-	$deputy->set_role('user', Kohana::config('deputy.roles.user'));
-	$deputy->set_role('editor', Kohana::config('deputy.roles.editor'));
+	$deputy->set_role('user', Kohana::$config->load('deputy.roles.user'));
+	$deputy->set_role('editor', Kohana::$config->load('deputy.roles.editor'));
 	
 	// Setting "config/deputy.autoload" to TRUE will perform this by default
-	$deputy->set_resources(Kohana::config('deputy.resources'));
+	$deputy->set_resources(Kohana::$config->load('deputy.resources'));
 	
 ### Step 3: Check Access
 

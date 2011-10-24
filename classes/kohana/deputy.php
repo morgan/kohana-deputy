@@ -61,7 +61,7 @@ class Kohana_Deputy
 	 */
 	public static function link($uri, $attributes = array(), $check = TRUE)
 	{
-		return self::instance()->html_link($uri, $attributes, $check);
+		return Deputy::instance()->html_link($uri, $attributes, $check);
 	}
 	
 	/**
@@ -127,6 +127,7 @@ class Kohana_Deputy
 	 * 
 	 * @access	public
 	 * @param	string
+	 * @param	mixed	array|Deputy_Role
 	 * @return	$this
 	 */
 	public function set_role($name, $role)
@@ -247,7 +248,7 @@ class Kohana_Deputy
 	{
 		$resource = ($resource) ? $resource : Deputy_Resource::factory(array('uri' => $uri)); 
 		
-		$segments = explode(self::DELIMITER, $uri);
+		$segments = explode(Deputy::DELIMITER, $uri);
 		$count = count($segments);
 		
 		$pointer = $this->_resources;
@@ -268,7 +269,7 @@ class Kohana_Deputy
 				
 				if ( ! $parent)
 				{
-					$parent = Deputy_Resource::factory(array('uri' => implode(self::DELIMITER, $base)));
+					$parent = Deputy_Resource::factory(array('uri' => implode(Deputy::DELIMITER, $base)));
 					
 					$pointer->set($segment, $parent);
 				}				
@@ -338,7 +339,7 @@ class Kohana_Deputy
 	{
 		$resource = $this->_resources;
 
-		foreach (explode(self::DELIMITER, $uri) as $segment)
+		foreach (explode(Deputy::DELIMITER, $uri) as $segment)
 			if ( ! $resource = $resource->get($segment))
 				break;
 		

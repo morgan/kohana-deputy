@@ -92,7 +92,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 	 */
 	public function __construct(array $config = array())
 	{
-		$config += Deputy_Resource::$defaults;
+		$config = Arr::merge(Deputy_Resource::$defaults, $config);
 		
 		$this->_title	= ($config['title']) ? $config['title'] : Deputy_Resource::humanize($config['uri']);
 		$this->_uri		= ($config['uri_override']) ?: $config['uri'];	

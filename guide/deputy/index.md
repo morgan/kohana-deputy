@@ -10,6 +10,5 @@ and resource objects can be created and traversed. [Click here to get started](s
 
 ## Additional Resources
 
-- Demo Module [At github](https://github.com/shadowhand/demo)
 - API Browser
 - Unit Tests

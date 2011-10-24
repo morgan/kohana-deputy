@@ -3,5 +3,4 @@
  - [Roles](roles)
  - [Resources](resources)
  - [Using Config](config)
- - [Demos](demos)
  - [Helpers](helpers)

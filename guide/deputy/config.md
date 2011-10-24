@@ -25,7 +25,7 @@ the sample from above:
 
 	$deputy = Deputy::instance();
 	
-	$deputy->set_resources(Kohana::config('deputy.resources'));
+	$deputy->set_resources(Kohana::$config->load('deputy.resources'));
 
 The above example will load all resources across all modules using Kohana's cascading file system 
 convention.
@@ -49,5 +49,5 @@ convention.
 
 	$deputy = Deputy::instance();
 	
-	$deputy->set_roles(Kohana::config('deputy.roles'));
+	$deputy->set_roles(Kohana::$config->load('deputy.roles'));
 
