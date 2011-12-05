@@ -64,7 +64,5 @@ within the applications bootstrap. Below demonstrates two ways to set roles.
 	
 ### Step 3: Check Access
 
-It is generally most appropriate to check access on a per controller basis. Below is an example 
-that checks access across this application. This can be tailored based on scope.
-
-	// extend controller	
+It is generally most appropriate to check access on a per controller basis. Checking access can be 
+performed based on the URI and implementation depends on the applications routing.

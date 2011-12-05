@@ -16,7 +16,8 @@ Deputy_Resource uses a unified construct with the following parameters:
 		'uri'		=> 'forum',
 		'title'		=> 'Forum',
 		'visible'	=> TRUE,
-		'override'	=> NULL
+		'override'	=> NULL,
+		'meta'		=> array('key' => 'value', 'class' => 'image_dashboard')
 	);
 
 The only required parameter is the URI. The title is derived from the last segment in the URI. 
@@ -25,10 +26,10 @@ Visibility is by default TRUE. Override can be used to specify another URI for t
 	$resource = Deputy_Resource::factory(array('uri' => 'forum/thread'));
 	
 	// Outputs "Thread"
-	echo $resource->get_title();
+	echo $resource->title();
 	
 	// Outputs "forum/thread"
-	echo $resource->get_uri();
+	echo $resource->uri();
 	
 	// Outputs "TRUE"
 	var_export($resource->is_visible());
@@ -61,7 +62,7 @@ essentially be used as an array.
 	// Outputs "Thread"
 	foreach ($parent as $child)
 	{
-		echo $child->get_title();
+		echo $child->title();
 	}
 
 ## Deputy Conventions
@@ -74,8 +75,17 @@ Deputy has flexible configuration for defining resources.
 	(
 		'forum',
 		'forum/thread' 			=> 'Threads',
-		'forum/thread/add'		=> array('title' => 'Add Thread', 'visible' => TRUE),
+		'forum/thread/add'		=> array('title' => 'Add Thread', 'visible' => TRUE, 'meta' => array('class' => 'image_dashboard')),
 		'forum/thread/edit'		=> FALSE,
 		'forum/thread/delete'	=> TRUE,
 		'forum/post'			=> Deputy_Resource::factory(array('uri' => 'forum/post'))
 	));
+	
+## Meta data
+
+Meta data is useful for specifying additional access information or for generating navigation 
+(such as HTML class, id, etc). Meta data can be specified on a per resource basis.
+
+	$deputy_resource->set_meta('class', 'image_dashboard');
+	
+	echo HTML::anchor($resource->uri(), $resource->title(), array('class' => $deputy_resource->get_meta('class')));

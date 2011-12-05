@@ -22,7 +22,9 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		'title'			=> NULL,
 		'visible'		=> TRUE,
 		'uri'			=> NULL,
-		'uri_override'	=> NULL
+		'uri_override'	=> NULL,
+		'segment'		=> NULL,
+		'meta'			=> array()
 	);
 		
 	/**
@@ -85,6 +87,22 @@ class Kohana_Deputy_Resource extends ArrayIterator
 	protected $_visible = FALSE;
 	
 	/**
+	 * Segment
+	 * 
+	 * @access	protected
+	 * @var		string
+	 */
+	protected $_segment;
+	
+	/**
+	 * Meta data
+	 * 
+	 * @access	protected
+	 * @var		array
+	 */
+	protected $_meta = array();
+	
+	/**
 	 * Initialize
 	 * 
 	 * @access	public
@@ -95,41 +113,124 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		$config = Arr::merge(Deputy_Resource::$defaults, $config);
 		
 		$this->_title	= ($config['title']) ? $config['title'] : Deputy_Resource::humanize($config['uri']);
-		$this->_uri		= ($config['uri_override']) ?: $config['uri'];	
-		$this->_visible	= $config['visible'];			
+		$this->_uri		= ($config['uri_override']) ? $config['uri_override'] : $config['uri'];	
+		$this->_visible	= $config['visible'];
+		$this->_segment	= ($config['segment']) ? $config['segment'] : array_pop(explode('/', $config['uri']));
+		$this->_meta	= $config['meta'];	
 	}
 	
 	/**
-	 * Get title
+	 * Get or set title
 	 * 
 	 * @access	public
-	 * @return	NULL|string
+	 * @param	mixed	NULL|string
+	 * @return	mixed	$this|string
 	 */
-	public function get_title()
+	public function title($value = NULL)
 	{
-		return $this->_title;
+		if ($value === NULL)
+			return $this->_title;
+			
+		$this->_title = $value;
+		
+		return $this;
 	}
 	
 	/**
-	 * Get URI
+	 * Get or set URI
 	 * 
 	 * @access	public
-	 * @return	NULL|string
+	 * @param	mixed	NULL|string
+	 * @return	mixed	$this|string
 	 */
-	public function get_uri()
+	public function uri($value = NULL)
 	{
-		return $this->_uri;
+		if ($value === NULL)
+			return $this->_uri;
+			
+		$this->_uri = $value;	
+			
+		return $this;
 	}
 	
 	/**
-	 * Whether or not resource is visible
+	 * Get or set Resource visibility
 	 * 
 	 * @access	public
-	 * @return	bool
+	 * @param	mixed	NULL|bool
+	 * @return	mixed	$this|bool
 	 */
-	public function is_visible()
+	public function is_visible($value = NULL)
 	{
-		return $this->_visible;
+		if ($value === NULL)
+			return $this->_visible;
+			
+		$this->_visible = (bool) $value;
+		
+		return $this;
+	}
+	
+	/**
+	 * Segment
+	 * 
+	 * @access	protected
+	 * @return	mixed	string|NULL
+	 */
+	public function segment($value = NULL)
+	{
+		if ($value === NULL)
+			return $this->_segment;
+			
+		$this->_segment = $value;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get or set all of meta
+	 * 
+	 * @access	protected
+	 * @return	mixed	string|NULL
+	 */
+	public function meta(array $value = NULL)
+	{
+		if ($value === NULL)
+			return $this->_meta;
+
+		$this->_meta = $value;
+		
+		return $this;
+	}	
+	
+	/**
+	 * Get Meta
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @param	mixed
+	 * @return	mixed
+	 */
+	public function get_meta($key, $default = NULL)
+	{
+		if (isset($this->_meta[$key]))
+			return $this->_meta[$key];
+			
+		return $default;
+	}
+	
+	/**
+	 * Set Meta
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @param	mixed
+	 * @return	$this
+	 */
+	public function set_meta($key, $value)
+	{
+		$this->_meta[$key] = $value;
+		
+		return $this;
 	}
 	
 	/**

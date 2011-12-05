@@ -36,8 +36,44 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		$this->assertInstanceOf('Deputy_Resource', $parent->get('thread'));
 		
 		// Verify child has correct URI
-		$this->assertEquals('forum/thread', $parent->get('thread')->get_uri());
+		$this->assertEquals('forum/thread', $parent->get('thread')->uri());
 	}	
+	
+	/**
+	 * Test Resource meta
+	 * 
+	 * @covers	Deputy_Resource::factory
+	 * @covers	Deputy_Resource::meta
+	 * @covers	Deputy_Resource::set_meta
+	 * @covers	Deputy_Resource::get_meta
+	 * @access	public
+	 * @return	void
+	 */
+	public function test_meta()
+	{
+		$default = array('test' => 'hello world');
+		
+		// create Deputy_Resource
+		$resource = Deputy_Resource::factory(array('meta' => $default));
+
+		// test getting all meta
+		$this->assertEquals($default, $resource->meta());		
+
+		// test from configuration
+		$this->assertEquals('hello world', $resource->get_meta('test'));		
+		
+		// test overriding all meta
+		$resource->meta(array('test2' => 'value'));
+		
+		// test the new meta is present
+		$this->assertEquals('value', $resource->get_meta('test2'));
+		
+		// test int
+		$resource->set_meta('test3', 3);
+		
+		// test setting
+		$this->assertEquals(3, $resource->get_meta('test3'));
+	}
 	
 	/**
 	 * Tests Resource config conventions
@@ -56,13 +92,13 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		$deputy_resource = Deputy_Resource::factory($set);
 
 		// Check for proper URI - specifically for "uri_override" scenario
-		$this->assertEquals($expected['uri'], $deputy_resource->get_uri());
+		$this->assertEquals($expected['uri'], $deputy_resource->uri());
 		
 		// Check covention for title
-		$this->assertEquals($expected['title'], $deputy_resource->get_title());
+		$this->assertEquals($expected['title'], $deputy_resource->title());
 		
 		// Verify visibility
-		$this->assertEquals($expected['visible'], $deputy_resource->is_visible());	
+		$this->assertEquals($expected['visible'], $deputy_resource->is_visible());
 	}	
 	
 	/**

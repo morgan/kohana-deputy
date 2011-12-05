@@ -315,11 +315,11 @@ class Kohana_Deputy
 					$config['uri'] = $key;
 					$config['visible'] = $value;
 				}
-				
+
 				$value = Deputy_Resource::factory($config);
 			}
 			
-			$uri = is_string($key) ? $key : $value->get_uri();
+			$uri = is_string($key) ? $key : $value->uri();
 			
 			$this->set($uri, $value);
 		}
@@ -328,7 +328,7 @@ class Kohana_Deputy
 	}	
 	
 	/**
-	 * Traverse Resource tree for child based on URI structure "parent/child/childchild"
+	 * Traverse Resource tree for child based on URI structure "parent/child/child/child"
 	 * 
 	 * @access	public
 	 * @param	string	URI of resource to retrieve.

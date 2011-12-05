@@ -156,11 +156,11 @@ class Kohana_DeputyTest extends Unittest_TestCase
 			
 			$this->assertInstanceOf('Deputy_Resource', $resource);
 
-			$this->assertEquals($setting['title'], $resource->get_title());
+			$this->assertEquals($setting['title'], $resource->title());
 			
 			$this->assertEquals($setting['visible'], $resource->is_visible());
 
-			$this->assertEquals($setting['uri'], $resource->get_uri());			
+			$this->assertEquals($setting['uri'], $resource->uri());			
 		}
 	}	
 	
