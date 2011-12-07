@@ -60,19 +60,19 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		$this->assertEquals($default, $resource->meta());		
 
 		// test from configuration
-		$this->assertEquals('hello world', $resource->get_meta('test'));		
+		$this->assertEquals('hello world', $resource->meta('test'));		
 		
 		// test overriding all meta
 		$resource->meta(array('test2' => 'value'));
 		
 		// test the new meta is present
-		$this->assertEquals('value', $resource->get_meta('test2'));
+		$this->assertEquals('value', $resource->meta('test2'));
 		
 		// test int
-		$resource->set_meta('test3', 3);
+		$resource->meta('test3', 3);
 		
 		// test setting
-		$this->assertEquals(3, $resource->get_meta('test3'));
+		$this->assertEquals(3, $resource->meta('test3'));
 	}
 	
 	/**

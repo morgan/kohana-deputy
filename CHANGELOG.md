@@ -4,7 +4,7 @@
 - Renamed `Deputy::get_uri` to `Deputy::uri` and made a getter/setter
 - Refactored `Deputy::is_visible` to a getter/setter
 - Added `Deputy_Resource::segment` for individual Resource URI segment
-- Added `Deputy_Resource::set_meta` and `Deputy_Resource::get_meta` for custom meta data.
+- Added `Deputy_Resource::meta` for custom meta data.
 - Updated User Guide documentation
 - Added `Kohana_Deputy_Resource_Test::test_meta` and updated tests to use new naming.
 - All tests pass: OK (11 tests, 73 assertions)

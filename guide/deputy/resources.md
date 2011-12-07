@@ -86,6 +86,6 @@ Deputy has flexible configuration for defining resources.
 Meta data is useful for specifying additional access information or for generating navigation 
 (such as HTML class, id, etc). Meta data can be specified on a per resource basis.
 
-	$deputy_resource->set_meta('class', 'image_dashboard');
+	$deputy_resource->meta('class', 'image_dashboard');
 	
-	echo HTML::anchor($resource->uri(), $resource->title(), array('class' => $deputy_resource->get_meta('class')));
+	echo HTML::anchor($resource->uri(), $resource->title(), array('class' => $deputy_resource->meta('class')));

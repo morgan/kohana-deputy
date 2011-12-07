@@ -187,48 +187,28 @@ class Kohana_Deputy_Resource extends ArrayIterator
 	}
 	
 	/**
-	 * Get or set all of meta
+	 * Get or set meta, array as first param overwrites all meta
 	 * 
 	 * @access	protected
-	 * @return	mixed	string|NULL
+	 * @param	mixed	NULL|array
+	 * @param	mixed	NULL
+	 * @return	mixed	NULL|array
 	 */
-	public function meta(array $value = NULL)
+	public function meta($key = NULL, $value = NULL)
 	{
-		if ($value === NULL)
+		if ($key === NULL)
 			return $this->_meta;
-
-		$this->_meta = $value;
-		
-		return $this;
-	}	
-	
-	/**
-	 * Get Meta
-	 * 
-	 * @access	public
-	 * @param	string
-	 * @param	mixed
-	 * @return	mixed
-	 */
-	public function get_meta($key, $default = NULL)
-	{
-		if (isset($this->_meta[$key]))
+		else if ( ! is_array($key) && $value === NULL && isset($this->_meta[$key]))
 			return $this->_meta[$key];
-			
-		return $default;
-	}
-	
-	/**
-	 * Set Meta
-	 * 
-	 * @access	public
-	 * @param	string
-	 * @param	mixed
-	 * @return	$this
-	 */
-	public function set_meta($key, $value)
-	{
-		$this->_meta[$key] = $value;
+		
+		if (is_array($key))
+		{
+			$this->_meta = $key;
+		}
+		else
+		{
+			$this->_meta[$key] = $value;
+		}
 		
 		return $this;
 	}
