@@ -1,3 +1,9 @@
+# 0.3.1 - 07/30/2012
+
+- Resolved `Deputy_Resource::__construct` issue in deriving segment.
+- Added unit test coverage for defect.
+- All tests pass: OK (12 tests, 81 assertions)
+
 # 0.3.0 - 12/04/2011
 
 - Renamed `Deputy::get_title` to `Deputy::title` and made a getter/setter
