@@ -115,7 +115,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		$this->_title	= ($config['title']) ? $config['title'] : Deputy_Resource::humanize($config['uri']);
 		$this->_uri		= ($config['uri_override']) ? $config['uri_override'] : $config['uri'];	
 		$this->_visible	= $config['visible'];
-		$this->_segment	= ($config['segment']) ? $config['segment'] : array_pop(explode('/', $config['uri']));
+		$this->_segment	= ($config['segment']) ? $config['segment'] : end(explode('/', $config['uri']));
 		$this->_meta	= $config['meta'];	
 	}
 	

@@ -79,8 +79,8 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 	 * Tests Resource config conventions
 	 * 
 	 * @covers			Deputy_Resource::factory
-	 * @covers			Deputy_Resource::get_uri
-	 * @covers			Deputy_Resource::get_title
+	 * @covers			Deputy_Resource::uri
+	 * @covers			Deputy_Resource::title
 	 * @covers			Deputy_Resource::is_visible
 	 * @dataProvider	provider_resources
 	 * @access			public
@@ -99,6 +99,9 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		
 		// Verify visibility
 		$this->assertEquals($expected['visible'], $deputy_resource->is_visible());
+		
+		// Check convention for "segment"
+		$this->assertEquals($expected['segment'], $deputy_resource->segment());		
 	}	
 	
 	/**
@@ -121,7 +124,8 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 				(
 					'uri'			=> 'forum/thread',
 					'title'			=> 'Thread',
-					'visible'		=> TRUE
+					'visible'		=> TRUE,
+					'segment'		=> 'thread'
 				)
 			),
 			array
@@ -135,7 +139,8 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 				(
 					'uri'			=> 'forum/thread/edit',
 					'title'			=> 'Edit Thread',
-					'visible'		=> TRUE
+					'visible'		=> TRUE,
+					'segment'		=> 'edit'
 				)
 			),	
 			array
@@ -149,7 +154,8 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 				(
 					'uri'			=> 'forum/thread/add',
 					'title'			=> 'Add',
-					'visible'		=> FALSE
+					'visible'		=> FALSE,
+					'segment'		=> 'add'
 				)
 			),	
 			array
@@ -163,7 +169,22 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 				(
 					'uri'			=> 'forum/browse',
 					'title'			=> 'Forum',
-					'visible'		=> TRUE
+					'visible'		=> TRUE,
+					'segment'		=> 'forum'
+				)
+			),
+			array
+			(
+				array
+				(
+					'uri'			=> 'forum'
+				),
+				array
+				(
+					'uri'			=> 'forum',
+					'title'			=> 'Forum',
+					'visible'		=> TRUE,
+					'segment'		=> 'forum'		
 				)
 			)
 		);
