@@ -110,6 +110,24 @@ class Kohana_Deputy_Role_Test extends Unittest_TestCase
 				array('forum/thread'),
 				'forum/thread',
 				TRUE
+			),
+			array
+			(
+				array('forum/*'),
+				'forum/thread',
+				TRUE
+			),
+			array
+			(
+				array('*'),
+				'forum/thread',
+				TRUE
+			),
+			array
+			(
+				array('forum/thread/post'),
+				'forum/thread',
+				FALSE
 			)
 		);
 	}

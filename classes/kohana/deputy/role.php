@@ -2,6 +2,7 @@
 /**
  * Deputy_Role
  * 
+ * @todo		Need to filter URI parameters to trim `Deputy::DELIMITER`
  * @package		Deputy
  * @category	Base
  * @author		Micheal Morgan <micheal@morgan.ly>
