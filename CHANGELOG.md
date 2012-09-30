@@ -1,3 +1,12 @@
+# 0.3.2 - 09/29/2012
+
+- Resolved issue #4 (https://github.com/morgan/kohana-deputy/issues/4). In `Deputy_Role`, denying 
+a child would also deny any parents in the URI. Now explicitly looking for URI definition before 
+checking for wildcard.
+- Added unit test coverage for aforementioned defect.
+- Implemented result caching for `Deputy_Role::is_allowed` and `Deputy_Role::is_denied`.
+- All tests pass: OK (14 tests, 83 assertions)
+
 # 0.3.1 - 07/30/2012
 
 - Resolved `Deputy_Resource::__construct` issue in deriving segment.

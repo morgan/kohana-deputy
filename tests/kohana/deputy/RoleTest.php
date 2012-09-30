@@ -6,7 +6,7 @@
  * @package		Deputy
  * @category	Tests
  * @author		Micheal Morgan <micheal@morgan.ly>
- * @copyright	(c) 2011 Micheal Morgan
+ * @copyright	(c) 2011-2012 Micheal Morgan
  * @license		MIT
  */
 class Kohana_Deputy_Role_Test extends Unittest_TestCase
@@ -30,7 +30,7 @@ class Kohana_Deputy_Role_Test extends Unittest_TestCase
 		$acl_role->allow_many($set);
 	
 		// Check permission
-		$this->assertEquals($expected, $acl_role->get_allow());		
+		$this->assertEquals($expected, $acl_role->get_allow());
 	}	
 	
 	/**
@@ -69,6 +69,48 @@ class Kohana_Deputy_Role_Test extends Unittest_TestCase
 					)
 				)
 			),
+		);
+	}
+
+	/**
+	 * Tests deny
+	 *
+	 * @dataProvider	provider_deny
+	 */
+	public function test_deny(array $set, $uri, $result)
+	{
+		// Create role
+		$acl_role = Deputy_Role::factory();
+
+		// Set permissions
+		$acl_role->deny_many($set);
+
+		// Check permission
+		$this->assertEquals($result, $acl_role->is_denied($uri));
+	}	
+
+	/**
+	 * Data provider for role resources
+	 *
+	 * @access	public
+	 * @return	array
+	 */
+	public static function provider_deny()
+	{
+		return array
+		(
+			array
+			(
+				array('forum/thread'),
+				'forum', 
+				FALSE
+			),
+			array
+			(
+				array('forum/thread'),
+				'forum/thread',
+				TRUE
+			)
 		);
 	}
 }

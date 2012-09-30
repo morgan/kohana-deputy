@@ -14,7 +14,7 @@
  * @package		Deputy
  * @category	Base
  * @author		Micheal Morgan <micheal@morgan.ly>
- * @copyright	(c) 2011 Micheal Morgan
+ * @copyright	(c) 2011-2012 Micheal Morgan
  * @license		MIT
  */
 class Kohana_Deputy
@@ -227,7 +227,7 @@ class Kohana_Deputy
 		foreach ($this->_roles as $role)
 		{
 			if ($role->is_denied($uri))
-				return FALSE;				
+				return FALSE;
 			
 			if ($role->is_allowed($uri))
 				return TRUE;

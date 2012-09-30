@@ -6,7 +6,7 @@
  * @package		Deputy
  * @category	Tests
  * @author		Micheal Morgan <micheal@morgan.ly>
- * @copyright	(c) 2011 Micheal Morgan
+ * @copyright	(c) 2011-2012 Micheal Morgan
  * @license		MIT
  */
 class Kohana_DeputyTest extends Unittest_TestCase
@@ -77,7 +77,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 						'deny'	=> array
 						(
 							'forum/post/edit'
-						)					
+						)
 					)
 				),
 				array
@@ -102,7 +102,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 						),
 						'deny'	=> array
 						(
-							'forum' => array('post' => array('edit' => array()))
+							'forum/post/edit' => TRUE
 						)					
 					)
 				)
@@ -215,7 +215,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 					'forum/post/edit'		=> array('title' =>	'Edit Post',	'visible' => TRUE,	'uri' => 'forum/post/edit'),
 					'forum/post/delete'		=> array('title' => 'Delete',		'visible' => TRUE,	'uri' => 'forum/post/delete')								
 				)
-			)			
+			)
 		);
 	}	
 }

@@ -5,7 +5,7 @@
  * @package		Deputy
  * @category	Base
  * @author		Micheal Morgan <micheal@morgan.ly>
- * @copyright	(c) 2011 Micheal Morgan
+ * @copyright	(c) 2011-2012 Micheal Morgan
  * @license		MIT
  */
 class Kohana_Deputy_Role
@@ -37,7 +37,15 @@ class Kohana_Deputy_Role
 	 * @var		array
 	 */
 	protected $_deny = array();
-	
+
+	/**
+	 * Denied URIs
+	 * 
+	 * @access	protected
+	 * @var		array
+	 */
+	protected $_deny_uri = array();
+
 	/**
 	 * Cache of allowed
 	 * 
@@ -52,8 +60,8 @@ class Kohana_Deputy_Role
 	 * @access	public
 	 * @var		array
 	 */
-	protected $_denied = array();	
-	
+	protected $_denied = array();
+
 	/**
 	 * Allow
 	 * 
@@ -90,7 +98,7 @@ class Kohana_Deputy_Role
 		{
 			$this->allow($uri);
 		}
-		
+
 		return $this;
 	}
 	
@@ -103,7 +111,9 @@ class Kohana_Deputy_Role
 	public function deny($uri)
 	{
 		$this->_set($this->_deny, $uri);
-		
+
+		$this->_deny_uri[$uri] = TRUE;
+
 		return $this;
 	}
 	
@@ -115,9 +125,9 @@ class Kohana_Deputy_Role
 	 */
 	public function get_deny()
 	{
-		return $this->_deny;
-	}	
-	
+		return $this->_deny_uri;
+	}
+
 	/**
 	 * Deny Many
 	 * 
@@ -130,10 +140,10 @@ class Kohana_Deputy_Role
 		{
 			$this->deny($uri);
 		}
-		
+
 		return $this;
-	}	
-	
+	}
+
 	/**
 	 * Is Allowed
 	 * 
@@ -142,7 +152,32 @@ class Kohana_Deputy_Role
 	 */
 	public function is_allowed($uri)
 	{
-		return $this->_get($this->_allow, $uri);
+		if ( ! isset($this->_allowed[$uri]))
+		{
+			$segments = explode(Deputy::DELIMITER, $uri);
+			$count = count($segments);
+
+			$array =& $this->_allow;
+
+			foreach ($segments as $index => $segment)
+			{
+				if (isset($array[$segment]))
+				{
+					if ($index + 1 == $count)
+						return $this->_allowed[$uri] = TRUE;
+					else if ($array =& $array[$segment])
+						continue;
+				}
+				else if (isset($array[Deputy::WILDCARD]))
+					return $this->_allowed[$uri] = TRUE;
+				else
+					break;
+			}
+
+			$this->_allowed[$uri] = FALSE;
+		}
+
+		return $this->_allowed[$uri];
 	}
 	
 	/**
@@ -153,40 +188,38 @@ class Kohana_Deputy_Role
 	 */
 	public function is_denied($uri)
 	{
-		return $this->_get($this->_deny, $uri);
-	}	
-	
-	/**
-	 * Get result of URI
-	 * 
-	 * @access	protected
-	 * @param	array
-	 * @param	string
-	 * @return	bool
-	 */
-	protected function _get(array & $array, $uri)
-	{
-		$segments = explode(Deputy::DELIMITER, $uri);
-		$count = count($segments);
+		if ( ! isset($this->_denied[$uri]))
+		{
+			if (isset($this->_deny_uri[$uri]))
+				return $this->_denied[$uri] = TRUE;
 
-		foreach ($segments as $index => $segment)
-		{			
-			if (isset($array[$segment]))
+			$segments = explode(Deputy::DELIMITER, $uri);
+			$count = count($segments);
+
+			$array =& $this->_deny;
+
+			// Check for wildcard
+			foreach ($segments as $index => $segment)
 			{
-				if ($index + 1 == $count)
-					return TRUE;
-				else if ($array =& $array[$segment])
-					continue;
+				if (isset($array[$segment]))
+				{
+					if ($index + 1 == $count)
+						break;
+					else if ($array =& $array[$segment])
+						continue;
+				}
+				else if (isset($array[Deputy::WILDCARD]))
+					return $this->_denied[$uri] = TRUE;
+				else
+					break;
 			}
-			else if (isset($array[Deputy::WILDCARD]))
-				return TRUE;
-			else
-				return FALSE;
+
+			$this->_denied[$uri] = FALSE;
 		}
-		
-		return FALSE;
+
+		return $this->_denied[$uri];
 	}
-	
+
 	/**
 	 * Set URI
 	 * 
@@ -203,8 +236,8 @@ class Kohana_Deputy_Role
 			{
 				$array[$segment] = array();
 			}
-			
+
 			$array =& $array[$segment];
 		}
-	}	
+	}
 }
