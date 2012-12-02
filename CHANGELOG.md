@@ -1,3 +1,10 @@
+# 0.4.0 - 12/02/2012
+
+- Upgraded to support Kohana 3.3
+- Renamed class files and directories to support PSR-0
+- Resolved pass by reference issue (now testing in strict mode)
+- All tests pass: OK (17 tests, 86 assertions)
+
 # 0.3.2 - 09/29/2012
 
 - Resolved issue #4 (https://github.com/morgan/kohana-deputy/issues/4). In `Deputy_Role`, denying 

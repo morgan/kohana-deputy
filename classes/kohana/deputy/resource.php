@@ -60,7 +60,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		}
 		
 		return $title;
-	}	
+	}
 
 	/**
 	 * Title
@@ -68,7 +68,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 	 * @access	protected
 	 * @var		string
 	 */
-	protected $_title = NULL;	
+	protected $_title = NULL;
 	
 	/**
 	 * URI
@@ -113,10 +113,17 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		$config = Arr::merge(Deputy_Resource::$defaults, $config);
 		
 		$this->_title	= ($config['title']) ? $config['title'] : Deputy_Resource::humanize($config['uri']);
-		$this->_uri		= ($config['uri_override']) ? $config['uri_override'] : $config['uri'];	
+		$this->_uri		= ($config['uri_override']) ? $config['uri_override'] : $config['uri'];
 		$this->_visible	= $config['visible'];
-		$this->_segment	= ($config['segment']) ? $config['segment'] : end(explode('/', $config['uri']));
-		$this->_meta	= $config['meta'];	
+		$this->_segment	= $config['segment'];
+		$this->_meta	= $config['meta'];
+
+		if ( ! $this->_segment)
+		{
+			$segments = explode('/', $config['uri']);
+
+			$this->_segment = end($segments);
+		}
 	}
 	
 	/**
@@ -148,7 +155,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 		if ($value === NULL)
 			return $this->_uri;
 			
-		$this->_uri = $value;	
+		$this->_uri = $value;
 			
 		return $this;
 	}
@@ -198,7 +205,7 @@ class Kohana_Deputy_Resource extends ArrayIterator
 	{
 		if ($key === NULL)
 			return $this->_meta;
-		else if ( ! is_array($key) && $value === NULL && isset($this->_meta[$key]))
+		else if ( ! is_array($key) AND $value === NULL AND isset($this->_meta[$key]))
 			return $this->_meta[$key];
 		
 		if (is_array($key))

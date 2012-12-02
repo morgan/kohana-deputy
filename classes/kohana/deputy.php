@@ -9,7 +9,7 @@
  * will stop with true. If deny at anytime returns true, the result of the check will stop with 
  * false.
  * 
- * Supports PHP 5.2.3 or greater.
+ * Supports PHP 5.3 or greater.
  * 
  * @package		Deputy
  * @category	Base
@@ -24,7 +24,7 @@ class Kohana_Deputy
 	 * 
 	 * @var		string
 	 */
-	const WILDCARD = '*';	
+	const WILDCARD = '*';
 
 	/**
 	 * Delimiter
@@ -132,7 +132,7 @@ class Kohana_Deputy
 	 */
 	public function set_role($name, $role)
 	{
-		if (isset($this->_roles[$name]) && is_array($role))
+		if (isset($this->_roles[$name]) AND is_array($role))
 		{
 			$acl_role = $this->_roles[$name];
 		}
@@ -256,7 +256,7 @@ class Kohana_Deputy
 		$base = array();
 		
 		foreach ($segments as $index => $segment)
-		{			
+		{
 			$base[] = $segment;
 			
 			if ($index + 1 == $count)
@@ -265,14 +265,14 @@ class Kohana_Deputy
 			}
 			else
 			{
-				$parent = $pointer->get($segment);		
+				$parent = $pointer->get($segment);
 				
 				if ( ! $parent)
 				{
 					$parent = Deputy_Resource::factory(array('uri' => implode(Deputy::DELIMITER, $base)));
 					
 					$pointer->set($segment, $parent);
-				}				
+				}
 				
 				$pointer = $parent;
 			}
@@ -305,7 +305,7 @@ class Kohana_Deputy
 					$config['title'] = $value;
 				}
 				else if (is_array($value))
-				{				
+				{
 					$value['uri'] = $key;
 					
 					$config = $value;
@@ -343,7 +343,7 @@ class Kohana_Deputy
 			if ( ! $resource = $resource->get($segment))
 				break;
 		
-		if ( ! $resource && $create)
+		if ( ! $resource AND $create)
 		{
 			$this->set($uri);
 			
@@ -364,7 +364,7 @@ class Kohana_Deputy
 	 */
 	public function html_link($uri, $attributes = array(), $check = TRUE)
 	{
-		if ($check && ! $this->allowed($uri))
+		if ($check AND ! $this->allowed($uri))
 			return NULL;
 			
 		$resource = $this->get($uri);
@@ -402,5 +402,5 @@ class Kohana_Deputy
 		}
 		
 		return $tree;
-	}	
+	}
 }

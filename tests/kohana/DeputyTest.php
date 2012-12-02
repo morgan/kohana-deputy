@@ -45,7 +45,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 			(
 				$permissions['deny'],
 				$role->get_deny()
-			);			
+			);
 		}
 	}	
 	
@@ -103,7 +103,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 						'deny'	=> array
 						(
 							'forum/post/edit' => TRUE
-						)					
+						)
 					)
 				)
 			),
@@ -160,7 +160,7 @@ class Kohana_DeputyTest extends Unittest_TestCase
 			
 			$this->assertEquals($setting['visible'], $resource->is_visible());
 
-			$this->assertEquals($setting['uri'], $resource->uri());			
+			$this->assertEquals($setting['uri'], $resource->uri());
 		}
 	}	
 	
@@ -185,8 +185,8 @@ class Kohana_DeputyTest extends Unittest_TestCase
 				array
 				(
 					'forum'					=> array('title' => 'Forum',	'visible' => TRUE,	'uri' => 'forum'),
-					'forum/thread'			=> array('title' => 'Thread',	'visible' => TRUE,	'uri' => 'forum/thread'),				
-					'forum/thread/add'		=> array('title' => 'Add',		'visible' => TRUE,	'uri' => 'forum/thread/add')										
+					'forum/thread'			=> array('title' => 'Thread',	'visible' => TRUE,	'uri' => 'forum/thread'),
+					'forum/thread/add'		=> array('title' => 'Add',		'visible' => TRUE,	'uri' => 'forum/thread/add')
 				)
 			),
 			// Testing settings
@@ -206,14 +206,14 @@ class Kohana_DeputyTest extends Unittest_TestCase
 				array
 				(
 					'forum'					=> array('title' => 'Forum',		'visible' => TRUE,	'uri' => 'forum/browse'),
-					'forum/thread'			=> array('title' => 'Thread',		'visible' => TRUE,	'uri' => 'forum/thread'),				
+					'forum/thread'			=> array('title' => 'Thread',		'visible' => TRUE,	'uri' => 'forum/thread'),
 					'forum/thread/add'		=> array('title' => 'Add Thread',	'visible' => TRUE,	'uri' => 'forum/thread/add'),
 					'forum/thread/edit'		=> array('title' => 'Edit Thread',	'visible' => FALSE,	'uri' => 'forum/thread/edit'),
 					'forum/thread/delete'	=> array('title' => 'Delete',		'visible' => FALSE,	'uri' => 'forum/thread/delete'),
-					'forum/post'			=> array('title' => 'Post',			'visible' => TRUE,	'uri' => 'forum/post'),				
+					'forum/post'			=> array('title' => 'Post',			'visible' => TRUE,	'uri' => 'forum/post'),
 					'forum/post/add'		=> array('title' => 'Add',			'visible' => TRUE,	'uri' => 'forum/post/add'),
 					'forum/post/edit'		=> array('title' =>	'Edit Post',	'visible' => TRUE,	'uri' => 'forum/post/edit'),
-					'forum/post/delete'		=> array('title' => 'Delete',		'visible' => TRUE,	'uri' => 'forum/post/delete')								
+					'forum/post/delete'		=> array('title' => 'Delete',		'visible' => TRUE,	'uri' => 'forum/post/delete')
 				)
 			)
 		);

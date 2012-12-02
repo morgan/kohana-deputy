@@ -50,4 +50,3 @@ convention.
 	$deputy = Deputy::instance();
 	
 	$deputy->set_roles(Kohana::$config->load('deputy.roles'));
-
