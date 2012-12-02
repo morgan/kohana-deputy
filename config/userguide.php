@@ -8,7 +8,7 @@ return array
 			'enabled'		=> TRUE,
 			'name'			=> 'Deputy',
 			'description'	=> 'Powerful ACL designed with the minimalist in mind.',
-			'copyright'		=> '&copy; 2011 Micheal Morgan',
+			'copyright'		=> '&copy; 2011-2012 Micheal Morgan',
 		)
 	)
 );

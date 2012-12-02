@@ -6,7 +6,7 @@
  * @package		Deputy
  * @category	Tests
  * @author		Micheal Morgan <micheal@morgan.ly>
- * @copyright	(c) 2011 Micheal Morgan
+ * @copyright	(c) 2011-2012 Micheal Morgan
  * @license		MIT
  */
 class Kohana_Deputy_Resource_Test extends Unittest_TestCase
@@ -57,10 +57,10 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		$resource = Deputy_Resource::factory(array('meta' => $default));
 
 		// test getting all meta
-		$this->assertEquals($default, $resource->meta());		
+		$this->assertEquals($default, $resource->meta());
 
 		// test from configuration
-		$this->assertEquals('hello world', $resource->meta('test'));		
+		$this->assertEquals('hello world', $resource->meta('test'));
 		
 		// test overriding all meta
 		$resource->meta(array('test2' => 'value'));
@@ -101,7 +101,7 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 		$this->assertEquals($expected['visible'], $deputy_resource->is_visible());
 		
 		// Check convention for "segment"
-		$this->assertEquals($expected['segment'], $deputy_resource->segment());		
+		$this->assertEquals($expected['segment'], $deputy_resource->segment());
 	}	
 	
 	/**
@@ -184,7 +184,7 @@ class Kohana_Deputy_Resource_Test extends Unittest_TestCase
 					'uri'			=> 'forum',
 					'title'			=> 'Forum',
 					'visible'		=> TRUE,
-					'segment'		=> 'forum'		
+					'segment'		=> 'forum'
 				)
 			)
 		);
