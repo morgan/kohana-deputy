@@ -13,6 +13,6 @@ online at http://dev.morgan.ly/kohana/v3.3/guide/deputy/.
 - API Browser
 - Unit Tests
 
-## Version 0.4.0
+## Version 0.4.1
 
-This is release version 0.4.0 of [Deputy](https://github.com/morgan/kohana-deputy).
+This is release version 0.4.1 of [Deputy](https://github.com/morgan/kohana-deputy).
