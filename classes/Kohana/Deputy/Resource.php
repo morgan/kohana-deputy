@@ -9,7 +9,7 @@
  * @license		MIT
  */
 class Kohana_Deputy_Resource extends ArrayIterator
-{	
+{
 	/**
 	 * Resource Defaults
 	 * 
