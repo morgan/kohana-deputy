@@ -1,6 +1,7 @@
 # 0.4.1 - 12/10/2012
 
 - Resolved class case (correctly renamed class files and directories)
+- Removed unused view and performed basic formatting clean up
 - All tests pass: "OK (17 tests, 86 assertions)"
 
 # 0.4.0 - 12/02/2012

@@ -9,8 +9,6 @@
  * will stop with true. If deny at anytime returns true, the result of the check will stop with 
  * false.
  * 
- * Supports PHP 5.3 or greater.
- * 
  * @package		Deputy
  * @category	Base
  * @author		Micheal Morgan <micheal@morgan.ly>
