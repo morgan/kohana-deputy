@@ -1,11 +1,14 @@
+:warning: **Notice**: The Kohana Framework announced official retirement on 07/01/2017. Therefore, this repository is no longer maintained.
+
+----
+
 # Deputy
 
 Powerful ACL designed with the minimalist in mind.
 
 ## Getting Started
 
-Recommend starting out with Deputy documentation using the User Guide module or available 
-online at http://dev.morgan.ly/kohana/v3.3/guide/deputy/.
+Recommend starting out with Deputy documentation using the User Guide module.
 
 ## Learning & References
 
